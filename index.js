@@ -34,13 +34,28 @@ async function run() {
             const updatedProduct = {
 
                 $set: {
-                    quantity: updatedItem.quantity
+                    quantity: JSON.parse(updatedItem.quantity)
                 }
             };
             const result = await productCollection.updateOne(filter, updatedProduct, options);
             res.send(result);
 
-        })
+        });
+        // app.put('/product/:id', async (req, res) => {
+        //     const id = req.params.id;
+        //     const quantity = req.body;
+        //     console.log(quantity);
+        //     const query = { _id: ObjectId(id) };
+        //     const options = { upsert: true };
+        //     const updateDoc = {
+        //         $set: {
+        //             quantity: quantity.quantity
+        //         }
+        //     }
+        //     const result = await itemCollection.updateOne(query, updatedProduct, options);
+        //     res.send(result)
+        // })
+
     }
     finally {
 
